@@ -1,0 +1,17 @@
+<div class="col-lg-6 accountbox" ng-controller="BlogController as blogctrl">
+      <form ng-submit="blogctrl.submit()" name="myForm" class="form-horizontal">
+      	<p class="accountline accountlog" style="">REGISTER
+        	<span class="glyphicon glyphicon-log-in pull-right"></span>
+      	</p>
+      	<p class="accountcolor">BLOG NAME*</p>
+      	<input type="text" class="form-control" ng-model="blogctrl.blog.blogName" style="border-radius: 1px;background-color: #eeeeee;margin-top: -10px">
+
+      	<p class="accountcolor">BLOG CONTENT*</p>
+      	<input type="text" class="form-control" ng-model="blogctrl.blog.blogContent" style="border-radius: 1px;background-color: #eeeeee;margin-top: -10px">
+      	
+      	<p class="accountcolor">User Id*</p>
+      	<input type="text" class="form-control" ng-model="blogctrl.blog.userId" style="border-radius: 1px;background-color: #eeeeee;margin-top: -10px">
+		<input type="submit" value="Register" class="btn btn-default" style="border-radius: 1px;margin-top: 10px">
+      	
+      </form>
+</div>
