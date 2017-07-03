@@ -6,8 +6,14 @@ app.config(function($routeProvider) {
 	$routeProvider.when("/", {
 		templateUrl : "Home/Home.html",
 		controller : "HomeController"
-	}).when("/Blog", {
-		templateUrl : "Blog/Blog.html",
+	}).when("/viewBlog", {
+		templateUrl : "Blog/viewBlog.html",
+		controller : "BlogController"
+	}).when("/addBlog", {
+		templateUrl : "Blog/addBlog.html",
+		controller : "BlogController"
+	}).when("/viewABlog", {
+		templateUrl : "Blog/viewABlog.html",
 		controller : "BlogController"
 	}).when("/Job", {
 		templateUrl : "Jobs/Job.html",
