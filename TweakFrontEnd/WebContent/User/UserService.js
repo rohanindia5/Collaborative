@@ -12,6 +12,16 @@ app.service('UserService',['$http','$q','$rootScope',function($http,$q,$rootScop
                                 console.error('Error while registering user');
                                 return $q.reject(errResponse);}
                     	  );
+				},
+	
+	authenticate: function(usercred)
+				{
+					return $http.post(url+'/authenticateuser',usercred)
+					.then(function(response){
+						return response.data;},
+						null
+					);
 				}
+	
 		  }
 }]);

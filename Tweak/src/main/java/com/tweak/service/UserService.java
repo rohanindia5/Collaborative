@@ -34,4 +34,15 @@ public class UserService
 	{
 		userDAOImp.deleteUser(userID);
 	}
+	
+	public UserTable authenticateUser(String username, String password) 
+	{
+		return userDAOImp.authenticateUser(username, password);
+	}
+	
+	public UserTable getUserByName(String username)
+	{
+		return userDAOImp.getUserByName(username);
+	}
+	
 }

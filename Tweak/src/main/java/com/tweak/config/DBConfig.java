@@ -31,14 +31,14 @@ public class DBConfig
 		Properties hibernateprop=new Properties();
 		hibernateprop.setProperty("hibernate.hbm2ddl.auto", "update");
 		hibernateprop.put("hibernate.show_sql", "true"); //optional
-		hibernateprop.put("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
+		hibernateprop.put("hibernate.dialect", "org.hibernate.dialect.Oracle10gDialect");
 		
 		//Adding the Database related Properties
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		dataSource.setDriverClassName("org.h2.Driver");
-		dataSource.setUrl("jdbc:h2:tcp://localhost/~/tweak");
-		dataSource.setUsername("sa");
-		dataSource.setPassword("");
+		dataSource.setDriverClassName("oracle.jdbc.driver.OracleDriver");
+		dataSource.setUrl("jdbc:oracle:thin:@localhost:1521:XE");
+		dataSource.setUsername("project");
+		dataSource.setPassword("hr");
 		
 		LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource);
 		sessionBuilder.addProperties(hibernateprop);

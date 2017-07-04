@@ -4,9 +4,12 @@ package com.tweak.restcontroller;
 import java.util.*;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.lang.UsesSunHttpServer;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,18 +19,24 @@ import org.springframework.web.bind.annotation.RestController;
 import com.tweak.modal.Blog;
 
 import com.tweak.service.BlogService;
+import com.tweak.service.UserService;
 
 @RestController
 public class BlogRestController 
 {
 	@Autowired
 	BlogService blogService;
+	@Autowired
+	UserService userService;
 	
-	@RequestMapping(value="/addBlog",method=RequestMethod.PUT)
-	public ResponseEntity<String> addBlog(@RequestBody Blog blog)
+	@RequestMapping(value="/addBlog",method=RequestMethod.POST)
+	public ResponseEntity<String> addBlog(@RequestBody Blog blog,HttpSession session)
 	{
+		String currentuser=(String)session.getAttribute("loggedInUser");
+		int currentuserid=userService.getUserByName(currentuser).getUserId();
 		blog.setBlogDate(new Date());
 		blog.setBlogLikes(0);
+		blog.setUserId(currentuserid);
 		blogService.addBlog(blog);
 		return new ResponseEntity<String>("Successfully Added",HttpStatus.OK);
 	}

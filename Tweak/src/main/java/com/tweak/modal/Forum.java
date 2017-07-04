@@ -17,7 +17,7 @@ public class Forum
 {
 	
 	@Id
-/*	@GeneratedValue(strategy=GenerationType.IDENTITY)*/
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int forumId;
 	private String forumName;
 	private String forumContent;

@@ -1,40 +1,17 @@
-<div id="headerwrapblog">
-	<div class="container">
-    	<div class="row">
-        	<div class="col-lg-6 col-lg-offset-3">
-          		<h1>Blog</h1>
-          		<h5>A WONDERFUL SERENITY HAS TAKEN POSSESSION OF MY ENTIRE SOUL, LIKE THESE SWEET MORNINGS OF SPRING WHICH I ENJOY WITH MY WHOLE HEART.</h5>
-        	</div>
-		</div>
-	</div>
-</div>
+<div  ng-controller="BlogController as ctrl">
 
-<div class="container" ng-controller="BlogController as blogctrl" style="margin-top: 20px;">
-	<div class="row">
-    	<div class="col-lg-12 blogbox">
-    		<form ng-submit="blogctrl.submit()" name="myForm" class="form-horizontal">
-    		<p class="accountline accountlog" style="margin-top: 5px">POST A BLOG
-        		<span class="glyphicon glyphicon-log-in pull-right"></span>
-      		</p>
-      		<p class="accountcolor" style="">BLOG TITLE*</p>
-      		<input type="text" class="form-control" ng-model="blogctrl.blog.blogName" style="border-radius: 1px;margin-top: -10px">
-      		<p class="accountcolor" style="margin-top: 20px">BLOG CONTENT*</p>
-			<textarea class="form-control" rows="10"  ng-model="blogctrl.blog.blogContent" style="border-radius: 1px;margin-top: -10px"></textarea>
-			<button type="submit" class="btn btn-default" style="border-radius: 1px;margin-top: 10px">POST</button>
+			<form ng-submit="ctrl.submit()" name="myForm" class="form-horizontal">
+
+				<label>Please fill the Job details..</label>
+
+				<label class="col-md-2 control-lable" for="title">Job Title</label>
+				<input type="text" ng-model="ctrl.blog.blogName" id="title" class="title form-control input-sm" />
+				<label class="col-md-2 control-lable" for="qualification">location</label>
+				<input type="text" ng-model="ctrl.blog.blogLocation" id="qualification" class="title form-control input-sm" />
+				<input type="submit" value="Create Job" class="btn btn-primary btn-sm">
+				
 			</form>
-    	</div> 
+		</div>
+
+
 	</div>
-</div>
-
-
-<!--  <form ng-submit="blogctrl.submit()" name="myForm" class="form-horizontal">
-      	<p class="accountline accountlog" style="">REGISTER
-        	<span class="glyphicon glyphicon-log-in pull-right"></span>
-      	</p>
-      	<p class="accountcolor">BLOG NAME*</p>
-      	<input type="text" class="form-control" ng-model="blogctrl.blog.blogName" style="border-radius: 1px;background-color: #eeeeee;margin-top: -10px">
-
-      	<p class="accountcolor">BLOG CONTENT*</p>
-      	<input type="text" class="form-control" ng-model="blogctrl.blog.blogContent" style="border-radius: 1px;background-color: #eeeeee;margin-top: -10px">
-      	<input type="submit" value="Create Job" class="btn btn-primary btn-sm"> 
-      </form> -->

@@ -23,7 +23,7 @@ public class JobsRestController
 	@Autowired
 	JobsService jobsService;
 	
-	@RequestMapping(value="/addJobs",method=RequestMethod.PUT)
+	@RequestMapping(value="/addJobs",method=RequestMethod.POST)
 	public ResponseEntity<String> addJobs(@RequestBody Jobs jobs)
 	{
 		jobs.setJobDate(new Date());

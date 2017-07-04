@@ -14,13 +14,16 @@ import javax.persistence.Id;
 public class Jobs 
 {
 	@Id
-	/*@GeneratedValue(strategy=GenerationType.IDENTITY)*/
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int jobId;
 	private String jobName;
+	private String jobLocation;
+	private String joobCompany;
 	private String jobDescription;
 	private String jobSkills;
 	@Column(columnDefinition="Date")
 	private Date jobDate;
+	private String jobExperience;
 	public int getJobId() {
 		return jobId;
 	}
@@ -51,5 +54,24 @@ public class Jobs
 	public void setJobDate(Date jobDate) {
 		this.jobDate = jobDate;
 	}
+	public String getJobLocation() {
+		return jobLocation;
+	}
+	public void setJobLocation(String jobLocation) {
+		this.jobLocation = jobLocation;
+	}
+	public String getJoobCompany() {
+		return joobCompany;
+	}
+	public void setJoobCompany(String joobCompany) {
+		this.joobCompany = joobCompany;
+	}
+	public String getJobExperience() {
+		return jobExperience;
+	}
+	public void setJobExperience(String jobExperience) {
+		this.jobExperience = jobExperience;
+	}
+	
 	
 }

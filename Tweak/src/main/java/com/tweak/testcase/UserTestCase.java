@@ -1,4 +1,4 @@
-package com.tweak.testcase;
+/*package com.tweak.testcase;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -26,4 +26,4 @@ public class UserTestCase
 		userService.addUser(user);
 		System.out.println("Blog Details Added");
 	}
-}
+}*/

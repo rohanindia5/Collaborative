@@ -2,6 +2,8 @@ package com.tweak.restcontroller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +24,7 @@ public class UserRestController
 	@Autowired
 	UserService userService;
 	
-	@RequestMapping(value="/addUser",method=RequestMethod.PUT)
+	@RequestMapping(value="/addUser",method=RequestMethod.POST)
 	public ResponseEntity<String> addUser(@RequestBody UserTable userTable)
 	{
 		userService.addUser(userTable);
@@ -40,8 +42,8 @@ public class UserRestController
 	public ResponseEntity<UserTable> updateUser(@PathVariable("userId") int userId,@RequestBody UserTable userTable)
 	{
 		UserTable curr_user=userService.updateUser(userId);
-		curr_user.setFirstName(userTable.getFirstName());
-		curr_user.setLastName(userTable.getLastName());
+		curr_user.setUserFirstName(userTable.getUserFirstName());
+		curr_user.setUserLastName(userTable.getUserLastName());
 		userService.addUser(curr_user);
 		return new ResponseEntity<UserTable>(curr_user,HttpStatus.OK);
 	}
@@ -51,6 +53,18 @@ public class UserRestController
 	{
 		userService.deleteUser(userId);
 		return new ResponseEntity<String>("Deleted Blog Successfully",HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/authenticateuser", method=RequestMethod.POST)
+	public ResponseEntity<UserTable> authenticateUsers(@RequestBody UserTable usercred, HttpSession httpSession)
+	{
+		UserTable usercredobj = userService.authenticateUser(usercred.getUserName(), usercred.getPassword());
+		
+			httpSession.setAttribute("loggedInUser", usercredobj.getUserName());
+			httpSession.setAttribute("loggedInUserRole", usercredobj.getUserRole());
+			//friendDAO.setOnline(usercredobj.getUsername());
+			
+		return new ResponseEntity<UserTable>(usercredobj, HttpStatus.OK);
 	}
 
 }

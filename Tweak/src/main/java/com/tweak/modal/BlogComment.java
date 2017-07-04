@@ -18,16 +18,18 @@ import javax.persistence.OneToOne;
 public class BlogComment 
 {
 	@Id
-//	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int blogCommentId;
 	private String blogCommentContext;
 	@Column(columnDefinition="Date")
 	private Date blogCommentDate;
 	private int userId;
 	private int blogId;
+	
 	@ManyToOne
 	@JoinColumn(name="userId",nullable=false,insertable=false,updatable=false)
 	private UserTable user;
+	
 	@ManyToOne
 	@JoinColumn(name="blogId",nullable=false,updatable=false,insertable=false)
 	private Blog Blog;

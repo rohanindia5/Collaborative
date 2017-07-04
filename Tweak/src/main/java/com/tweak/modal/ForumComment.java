@@ -16,7 +16,7 @@ import javax.persistence.ManyToOne;
 public class ForumComment 
 {
 	@Id
-	/*@GeneratedValue(strategy=GenerationType.IDENTITY)*/
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int forumCommentId;
 	private String forumCommentContext;
 	@Column(columnDefinition="Date")

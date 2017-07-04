@@ -11,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
+import org.springframework.web.multipart.MultipartFile;
 
 import org.hibernate.annotations.Columns;
 
@@ -19,17 +21,23 @@ public class Blog
 {
 
 	@Id
-	/*@GeneratedValue(strategy=GenerationType.IDENTITY)*/
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int blogId;
 	private String blogName;
 	private String blogContent;
 	@Column(columnDefinition="Date")
 	private Date blogDate;
 	private int blogLikes;
+
 	private int userId;
 	@ManyToOne
 	@JoinColumn(name="userId",nullable=false,updatable=false,insertable=false)
 	private UserTable user;
+	
+	@Transient
+	private MultipartFile blogImage;
+	
+	
 	public int getBlogId() {
 		return blogId;
 	}

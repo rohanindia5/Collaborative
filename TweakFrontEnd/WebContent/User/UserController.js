@@ -1,6 +1,6 @@
-app.controller('UserController',['UserService','$location','$rootScope',function(UserService,$location,$rootScope){
-	var self=this;
+app.controller('UserController',['UserService','$location','$rootScope','$scope','$cookies','$http',function(UserService,$location,$rootScope,$scope,$cookies,$http){
 	
+	var self=this;
 	this.user={
 				userId:'',
 				userName:'',
@@ -10,7 +10,17 @@ app.controller('UserController',['UserService','$location','$rootScope',function
 				userRole:''
 			  };
 	
+	this.usercred = {
+						userId:'',
+						userName:'',
+						password:'',
+						userFirstName:'',
+						userLastName:'',
+						userRole:''
+					};
+	
 	this.users=[];
+	self.usercreds = [];
 	
 	self.submit = function() 
 				{
@@ -31,5 +41,36 @@ app.controller('UserController',['UserService','$location','$rootScope',function
 						console.error('Error while registering');
 				  });
 				  };
+				  
+	self.authenticate = function(usercred)
+					{
+						console.log("authenticate method in controller started");
+						UserService.authenticate(usercred).then(function(udata) {
+						self.usercred = udata;										
+						console.log("Valid credentials, navigating to home page");
+						$rootScope.loggedInUser = self.usercred.username;
+						$rootScope.userLoggedIn = true;
+						$rootScope.loggedInUserRole = self.usercred.role;
+						$http.defaults.headers.common['Authorization'] = 'Basic '+$rootScope.loggedInUser;
+						$cookies.put('loggedInUser', $rootScope.loggedInUser);
+						$cookies.put('userLoggedIn', $rootScope.userLoggedIn);
+						$cookies.put('loggedInUserRole', $rootScope.loggedInUserRole);
+						$location.path("/");
+											
+					},
+						function(errorresponse)
+						{
+							console.error("Error while logging in user");
+						}
+						);
+					};
+					
+    self.login = function()
+    			{
+    				console.log("login method in controller started");
+					self.authenticate(self.usercred);
+					console.log("login method in controller ended");
+				};
+					
 	
 }])
