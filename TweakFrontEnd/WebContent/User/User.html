@@ -26,7 +26,7 @@
       </form>
     </div>
     
-    <div class="col-lg-6 accountbox" >
+    <div class="col-lg-6 accountbox" style="height: 350px">
       <form ng-submit="userctrl.submit()" name="myForm" class="form-horizontal">
       	<p class="accountline accountlog" style="">REGISTER
         	<span class="glyphicon glyphicon-log-in pull-right"></span>
@@ -36,6 +36,14 @@
 
       	<p class="accountcolor">PASSWORD*</p>
       	<input type="password" class="form-control" ng-model="userctrl.user.password" style="border-radius: 1px;background-color: #eeeeee;margin-top: -10px">
+      	
+      	<p class="accountcolor">FIRST NAME*</p>
+      	<input type="text" class="form-control" ng-model="userctrl.user.userFirstName" style="border-radius: 1px;background-color: #eeeeee;margin-top: -10px">
+      	
+      	<p class="accountcolor">LAST NAME*</p>
+      	<input type="text" class="form-control" ng-model="userctrl.user.userLastName" style="border-radius: 1px;background-color: #eeeeee;margin-top: -10px">
+      	
+      	
 		<input type="submit" value="Register" class="btn btn-default" style="border-radius: 1px;margin-top: 10px">
       	<!-- <button type="submit" class="btn btn-default" style="border-radius: 1px;margin-top: 10px">REGISTER</button> -->
       </form>

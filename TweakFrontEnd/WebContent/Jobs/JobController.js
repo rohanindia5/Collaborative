@@ -30,4 +30,16 @@ app	.controller('JobController',['JobService','$location', '$rootScope',function
 			console.error('Error while posting job.');
 		});
 	};
+	
+	self.getAllJobs = function() {
+		console.log('calling the method getAllJobs');
+		JobService.getAllJobs().then(function(d) {
+			self.jobs = d;},
+			function(errResponse) {
+			console.error('Error while fetching All opend jobs');
+		});
+	};
+
+	self.getAllJobs(); // calling getAllJobs function
+
 }])

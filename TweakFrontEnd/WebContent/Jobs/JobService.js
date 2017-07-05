@@ -18,5 +18,19 @@ app.service('JobService', ['$http', '$q','$rootScope', function($http, $q,$rootS
                             }
                     );
         		},
+        		
+        getAllJobs: function(){
+        	return $http.get(url+'/getJobs/')
+        			.then(
+        					function(response){
+        	                    return response.data;
+        	                 }, 
+        	                 function(errResponse){
+        	                     console.error('Error while getting all jobs');
+        	                      return $q.reject(errResponse);
+        	                  }
+        	          );
+        	    },		
+        		
 		   }
 }])

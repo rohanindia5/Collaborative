@@ -29,7 +29,7 @@ public class BlogDAOImp implements BlogDAO
 
 	@Override
 	public Blog updateBlog(int blogId) {
-		List<Blog> list=sessionFactory.getCurrentSession().createQuery("from Blog where blogId"+blogId).getResultList();
+		List<Blog> list=sessionFactory.getCurrentSession().createQuery("from Blog where blogId="+blogId).getResultList();
 		return list.get(0);
 	}
 

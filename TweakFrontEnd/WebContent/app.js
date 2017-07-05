@@ -9,18 +9,18 @@ app.config(function($routeProvider) {
 	})
 	.when("/viewBlog", {
 		templateUrl : "Blog/viewBlog.html",
-		controller : "BlogController"
+		controller : "BlogController1"
 	})
 	.when("/addBlog", {
 		templateUrl : "Blog/addBlog.html",
-		controller : "BlogController"
+		controller : "BlogController1"
 	})
 	.when("/viewABlog", {
 		templateUrl : "Blog/viewABlog.html",
-		controller : "BlogController"
+		controller : "BlogController1"
 	})
-	.when("/Job", {
-		templateUrl : "Jobs/Job.html",
+	.when("/viewJob", {
+		templateUrl : "Jobs/viewJob.html",
 		controller : "JobController"
 	})
 	.when("/addJob", {

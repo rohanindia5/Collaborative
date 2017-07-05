@@ -1,0 +1,47 @@
+<div id="headerwrapjob">
+	<div class="container">
+    	<div class="row">
+        	<div class="col-lg-6 col-lg-offset-3">
+          		<h1 style="color:white">Job</h1>
+          		<h4 style="color:white;font-size: 20px">Pleasure in job puts perfection in the work.</h4>
+				<a href="#!/addJob"  class="btn btn-default" style="border-radius: 1px;margin-top: 10px">Post A Job</a>          		
+        	</div>
+		</div>
+	</div>
+</div>
+
+<div class="container" style="margin-top: 50px;" ng-controller="JobController as jobctrl">
+	<div class="row">
+		<div class="col-lg-6">
+			<h4>Title</h4>
+		</div>
+		<div class="col-lg-2">
+			<h4 style="text-align: center;">Experience</h4>
+		</div>
+		<div class="col-lg-2">
+			<h4 style="text-align: center;">Location</h4>
+		</div>
+		<div class="col-lg-2">
+			<h4 style="text-align: center;">Created Date</h4>
+		</div>
+	</div>
+	<hr>
+	<div ng-repeat="job in jobctrl.jobs">
+	<div class="row">
+		<div class="col-lg-6">
+			<p style="font-size:20px">{{job.jobName}}</p>
+			<p style="font-size:14px">{{job.joobCompany}}</p>
+		</div>
+		<div class="col-lg-2">
+			<p style="text-align: center;">{{job.jobExperience}} yrs</p>
+		</div>
+		<div class="col-lg-2">
+			<p style="text-align: center;">{{job.jobLocation}}</p>
+		</div>
+		<div class="col-lg-2">
+			<p style="text-align: center;">{{job.jobDate|date:'MM/dd/yyyy'}}</p>
+		</div>
+	</div>
+	<hr>
+	</div>
+</div>

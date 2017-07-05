@@ -1,43 +1,41 @@
-<div class="generic-container" ng-controller="JobController as ctrl">
-
-			<form ng-submit="ctrl.submit()" name="myForm" class="form-horizontal">
-
-				<label>Please fill the Job details..</label>
-
-				<label class="col-md-2 control-lable" for="title">Job Title</label>
-				<input type="text" ng-model="ctrl.job.jobName" id="title"
-								class="title form-control input-sm"
-								placeholder="Enter job title" required  />
-				<label class="col-md-2 control-lable" for="qualification">location</label>
-				<input type="text" ng-model="ctrl.job.jobLocation" id="qualification"
-								class="title form-control input-sm"
-								placeholder="Enter job qualification" required  />
-				<label class="col-md-2 control-lable" for="qualification">Compnay</label>
-				<input type="text" ng-model="ctrl.job.jobCompany" id="qualification"
-								class="title form-control input-sm"
-								placeholder="Enter job qualification" required  />
-				<label class="col-md-2 control-lable" for="qualification">descrip</label>
-				<input type="text" ng-model="ctrl.job.jobDescription" id="qualification"
-								class="title form-control input-sm"
-								placeholder="Enter job qualification" required  />
-				<label class="col-md-2 control-lable" for="qualification">skill</label>
-				<input type="text" ng-model="ctrl.job.jobSkills" id="qualification"
-								class="title form-control input-sm"
-								placeholder="Enter job qualification" required  />
-				<label class="col-md-2 control-lable" for="qualification">experience</label>
-				<input type="text" ng-model="ctrl.job.jobExperience" id="qualification"
-								class="title form-control input-sm"
-								placeholder="Enter job qualification" required  />
-				
-				
-				<div class="row">
-					<div class="form-actions floatRight">
-						<input type="submit" value="Create Job" class="btn btn-primary btn-sm">
-						<button type="button" ng-click="ctrl.reset()" class="btn btn-warning btn-sm">Reset Job</button>
-					</div>
-				</div>
-			</form>
+<div id="headerwrapjob">
+	<div class="container">
+    	<div class="row">
+        	<div class="col-lg-6 col-lg-offset-3">
+          		<h1 style="color:white">Job</h1>
+          		<h4 style="color:white;font-size: 20px">Pleasure in job puts perfection in the work.</h4>          		
+        	</div>
 		</div>
-
-
 	</div>
+</div>
+
+<div class="container" ng-controller="JobController as ctrl" style="margin-top: 40px;">
+	<div class="row">
+		<div class="col-lg-12 jobbox">
+			<form ng-submit="ctrl.submit()" name="myForm" class="form-horizontal">
+				<p class="accountline accountlog" style="">POST A JOB
+        			<span class="glyphicon glyphicon-log-in pull-right"></span>
+      			</p>
+      			<p class="accountcolor">JOB NAME*</p>
+				<input type="text" ng-model="ctrl.job.jobName" class="title form-control input-sm" placeholder="Enter job title" style="border-radius: 1px;margin-top: -10px" required  />
+				
+				<p class="accountcolor" style="margin-top: 20px">JOB LOCATION*</p>
+				<input type="text" ng-model="ctrl.job.jobLocation" class="title form-control input-sm" placeholder="Enter job location" style="border-radius: 1px;margin-top: -10px" required  />
+				
+				<p class="accountcolor" style="margin-top: 20px">COMPANY NAME*</p>
+				<input type="text" ng-model="ctrl.job.jobCompany" class="title form-control input-sm" placeholder="Enter company name" style="border-radius: 1px;margin-top: -10px" required  />
+				
+				<p class="accountcolor" style="margin-top: 20px">JOB SKILLS*</p>
+				<input type="text" ng-model="ctrl.job.jobSkills" class="title form-control input-sm" placeholder="Enter job skills" style="border-radius: 1px;margin-top: -10px" required  />
+				
+				<p class="accountcolor" style="margin-top: 20px">JOB EXPERIENCE*</p>
+				<input type="text" ng-model="ctrl.job.jobExperience" class="title form-control input-sm" placeholder="Enter job experience" style="border-radius: 1px;margin-top: -10px" required  />
+				
+				<p class="accountcolor" style="margin-top: 20px">JOB DESCRIPTION*</p>
+				<textarea class="form-control" ng-model="ctrl.job.jobDescription" style="border-radius: 1px;margin-top: -10px" rows="10"></textarea>
+
+				<input type="submit" value="POST" class="btn btn-default" style="border-radius: 1px;margin-top: 10px">				
+			</form>
+		</div>	
+	</div>
+</div>

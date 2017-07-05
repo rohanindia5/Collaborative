@@ -48,7 +48,7 @@ public class BlogRestController
 		return new ResponseEntity<List<Blog>>(listblogs,HttpStatus.OK);
 	}
 	
-	@RequestMapping(value="/updateBlog-{blogId}",method=RequestMethod.PUT)
+	@RequestMapping(value="/updateBlog/{blogId}",method=RequestMethod.PUT)
 	public ResponseEntity<Blog> updateBlog(@PathVariable("blogId") int blogId,@RequestBody Blog blog)
 	{
 		Blog curr_blog=blogService.updateBlog(blogId);
@@ -58,11 +58,19 @@ public class BlogRestController
 		return new ResponseEntity<Blog>(curr_blog,HttpStatus.OK);
 	}
 	
-	@RequestMapping(value="/deleteBlog-{blogId}",method=RequestMethod.DELETE)
+	@RequestMapping(value="/deleteBlog/{blogId}",method=RequestMethod.DELETE)
 	public ResponseEntity<String> deleteBlog(@PathVariable("blogId") int blogId)
 	{
 		blogService.deleteBlog(blogId);
 		return new ResponseEntity<String>("Deleted Blog Successfully",HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/getBlogDetails/{blogId}",method=RequestMethod.GET)
+	public ResponseEntity<Blog> getABlog(@PathVariable("blogId") int blogId)
+	{
+		System.out.println("getting blog details");
+		Blog blog=blogService.updateBlog(blogId);
+		return new ResponseEntity<Blog>(blog,HttpStatus.OK);
 	}
 	
 }
