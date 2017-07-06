@@ -24,6 +24,7 @@ public class Blog
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int blogId;
 	private String blogName;
+	@Column(columnDefinition="CLOB")
 	private String blogContent;
 	@Column(columnDefinition="Date")
 	private Date blogDate;

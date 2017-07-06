@@ -1,5 +1,5 @@
-app.controller('BlogController1',['BlogService','$location', '$rootScope',function(BlogService,$location,$rootScope) {
-
+app.controller('BlogController1',['BlogService','$location', '$rootScope','$scope','$http',function(BlogService,$location,$rootScope,$scope,$http) {
+	
 	var self = this;
 	
 	this.blog = 
@@ -25,8 +25,10 @@ app.controller('BlogController1',['BlogService','$location', '$rootScope',functi
 		console.log('submit a new blog', self.blog);
 		BlogService.postABlog(blog).then(function(d) {
 		alert("You successfully posted the blog")
+		self.submitBlog();
 		}, function(errResponse) {
 			console.error('Error while posting blog.');
+			self.submitBlog();
 		});
 	};
 	
@@ -53,6 +55,26 @@ app.controller('BlogController1',['BlogService','$location', '$rootScope',functi
 			console.error('Error while fetching blog details');
 			});
 		};
+		
+	self.submitBlog = submitBlog;
+	function submitBlog(){
+		var file = $scope.blogImage;
+		var uploadUrl =  'http://localhost:8081/Tweak/blogUpload';
+		console.log('file is:',file);
+		var fd = new FormData();
+		fd.append('file', file);
+		$http.post(uploadUrl, fd, {
+			transformRequest : angular.identity,
+		 	 headers : {
+		 	   'Content-Type' : undefined
+		 	   }
+		 	   }).success(function() {
+		 	   console.log('success');
+		 	   }).error(function() {
+		 	   console.log('error');
+		 	   });
+		
+		    }
 
 
 }])

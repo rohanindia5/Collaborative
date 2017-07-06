@@ -18,7 +18,8 @@ public class Jobs
 	private int jobId;
 	private String jobName;
 	private String jobLocation;
-	private String joobCompany;
+	private String jobCompany;
+	@Column(columnDefinition="CLOB")
 	private String jobDescription;
 	private String jobSkills;
 	@Column(columnDefinition="Date")
@@ -60,11 +61,11 @@ public class Jobs
 	public void setJobLocation(String jobLocation) {
 		this.jobLocation = jobLocation;
 	}
-	public String getJoobCompany() {
-		return joobCompany;
+	public String getJobCompany() {
+		return jobCompany;
 	}
-	public void setJoobCompany(String joobCompany) {
-		this.joobCompany = joobCompany;
+	public void setJobCompany(String jobCompany) {
+		this.jobCompany = jobCompany;
 	}
 	public String getJobExperience() {
 		return jobExperience;

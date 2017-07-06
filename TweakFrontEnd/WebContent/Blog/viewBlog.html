@@ -13,7 +13,7 @@
 <div class="container" ng-controller="BlogController1 as blogctrl">
   <div class="row" style="margin-top: 20px;">
     <div class="col-lg-4" ng-repeat="blog in blogctrl.blogs">
-      <a href="#" ng-click="blogctrl.getBlogDetails(blog.blogId)"><img src="https://i.stack.imgur.com/rhy46.png" class="img-responsive blogimage" alt="Cinque Terre"></a>
+      <a href="#" ng-click="blogctrl.getBlogDetails(blog.blogId)"><img src="resources/image/blog{{blog.blogId}}.jpg" class="img-responsive blogimage" alt="Cinque Terre"></a>
       <h5>{{blog.blogName}}</h5>
       <h6>By {{blog.user.userFirstName}} {{blog.user.userLastName}} | {{blog.blogDate|date:'MM/dd/yyyy'}}</h6>
     </div>
