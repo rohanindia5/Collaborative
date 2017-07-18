@@ -29,8 +29,8 @@
 	<div ng-repeat="job in jobctrl.jobs">
 	<div class="row">
 		<div class="col-lg-6">
-			<p style="font-size:20px">{{job.jobName}}</p>
-			<p style="font-size:14px">{{job.joobCompany}}</p>
+			<p style="font-size:20px"><a href="#" ng-click="jobctrl.getJobDetails(job.jobId)">{{job.jobName}}</a></p>
+			<p style="font-size:14px">{{job.jobCompany}}</p>
 		</div>
 		<div class="col-lg-2">
 			<p style="text-align: center;">{{job.jobExperience}} yrs</p>

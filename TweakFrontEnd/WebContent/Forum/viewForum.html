@@ -1,0 +1,46 @@
+<div id="headerwrapforum">
+	<div class="container">
+    	<div class="row">
+        	<div class="col-lg-6 col-lg-offset-3">
+          		<h1 style="color:white">Forum</h1>
+          		<h4 style="color:white">Discussion Is An Exchange Of Knowledge</h4>
+          		<a href="#!/addForum"  class="btn btn-default" style="border-radius: 1px;margin-top: 10px">Post A Forum</a>
+        	</div>
+		</div>
+	</div>
+</div>
+
+<div class="container" style="margin-top: 10px;" ng-controller="ForumController as forumctrl">
+	<div class="row">
+		<div class="col-lg-6">
+			<h4>Topics</h4>
+		</div>
+		<div class="col-lg-2">
+			<h4 style="text-align: center;">Likes</h4>
+		</div>
+		<div class="col-lg-2">
+			<h4 style="text-align: center;">Comment</h4>
+		</div>
+		<div class="col-lg-2">
+			<h4 style="text-align: center;">Created Date</h4>
+		</div>
+	</div>
+	<hr>
+	<div ng-repeat="forum in forumctrl.forums">
+	<div class="row">
+		<div class="col-lg-6">
+			<p style="font-size:20px" ng-click="forumctrl.getForumDetails(forum.forumId)">{{forum.forumName}}</p>
+		</div>
+		<div class="col-lg-2">
+			<p style="text-align: center;">{{forum.forumLikes}}</p>
+		</div>
+		<div class="col-lg-2">
+			<p style="text-align: center;">{{forum.forumComment}}</p>
+		</div>
+		<div class="col-lg-2">
+			<p style="text-align: center;">{{forum.forumDate|date:'MM/dd/yyyy'}}</p>
+		</div>
+	</div>
+	<hr>
+	</div>
+</div>

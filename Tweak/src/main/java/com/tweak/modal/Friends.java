@@ -11,13 +11,12 @@ import javax.persistence.ManyToOne;
 public class Friends 
 {
 	@Id
-@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int friendId;
-	private String friendFirstName;
-	private String friendLastName;
+	private int friendsUserId;
 	private int userId;
-	private char status;
-	private char isOnline;
+	private String status;
+	private boolean isOnline;
 	@ManyToOne
 	@JoinColumn(name="userId",nullable=false,insertable=false,updatable=false)
 	private UserTable user;
@@ -26,18 +25,6 @@ public class Friends
 	}
 	public void setFriendId(int friendId) {
 		this.friendId = friendId;
-	}
-	public String getFriendFirstName() {
-		return friendFirstName;
-	}
-	public void setFriendFirstName(String friendFirstName) {
-		this.friendFirstName = friendFirstName;
-	}
-	public String getFriendLastName() {
-		return friendLastName;
-	}
-	public void setFriendLastName(String friendLastName) {
-		this.friendLastName = friendLastName;
 	}
 	public int getUserId() {
 		return userId;
@@ -51,17 +38,25 @@ public class Friends
 	public void setUser(UserTable user) {
 		this.user = user;
 	}
-	public char getStatus() {
+	public int getFriendsUserId() {
+		return friendsUserId;
+	}
+	public void setFriendsUserId(int friendsUserId) {
+		this.friendsUserId = friendsUserId;
+	}
+	public String getStatus() {
 		return status;
 	}
-	public void setStatus(char status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
-	public char getIsOnline() {
+	public boolean isOnline() {
 		return isOnline;
 	}
-	public void setIsOnline(char isOnline) {
+	public void setOnline(boolean isOnline) {
 		this.isOnline = isOnline;
 	}
 	
+	
 }
+	

@@ -1,7 +1,5 @@
 package com.tweak.modal;
 
-
-
 import java.util.Date;
 
 import javax.persistence.Column;

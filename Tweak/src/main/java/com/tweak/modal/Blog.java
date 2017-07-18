@@ -29,7 +29,7 @@ public class Blog
 	@Column(columnDefinition="Date")
 	private Date blogDate;
 	private int blogLikes;
-
+	private int blogComment;
 	private int userId;
 	@ManyToOne
 	@JoinColumn(name="userId",nullable=false,updatable=false,insertable=false)
@@ -82,5 +82,12 @@ public class Blog
 	}
 	public void setBlogDate(Date blogDate) {
 		this.blogDate = blogDate;
+	}
+	public int getBlogComment() {
+		return blogComment;
+	}
+	public void setBlogComment(int blogComment) {
+		this.blogComment = blogComment;
 	}	
+	
 }

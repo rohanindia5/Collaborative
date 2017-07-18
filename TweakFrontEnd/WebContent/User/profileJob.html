@@ -1,0 +1,66 @@
+<div class="container-fluid" ng-controller="UserController as userctrl">
+  <div class="row">
+    <div class="fb-profile">
+        <div id="headerwrapprofile"></div>
+        <img align="left" class="fb-image-profile thumbnail" src="resources/image/user{{loggedInUserId}}.jpg" alt="Profile image example"/>
+        <div class="fb-profile-text">
+            <h1>{{loggedInUserFirstName}} {{loggedInUserLastName}}</h1>
+            
+            <form name="userForm" ng-submit="userctrl.submitUser()" enctype="multipart/form-data" method="POST">
+				<input type="file" file-model="userImage"/>
+				<input type="submit" value="UPDATE" class="btn btn-default" style="border-radius: 1px;margin-top: 10px">
+			</form>
+			
+        </div>
+    </div>
+  </div>
+</div>
+   
+<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="billcard">
+					<a  href="#!/Profile" style="margin-right: 50px">YOUR BLOG</a>
+					<a  href="#!/profileForum" style="margin-right: 50px">YOUR FORUM</a>
+					<a  href="#!/profileJob" style="margin-right: 50px">JOB</a>
+					<a  href="#!/profileFriends" style="margin-right: 50px">YOUR FRIENDS</a>
+					<hr>
+					<div class="container" ng-controller="JobController as jobctrl">
+						<div class="row">
+							<div class="col-lg-5">
+								<h4>Title</h4>
+							</div>
+							<div class="col-lg-2">
+								<h4 style="text-align: center;">Experience</h4>
+							</div>
+							<div class="col-lg-2">
+								<h4 style="text-align: center;">Location</h4>
+							</div>
+							<div class="col-lg-2">
+								<h4 style="text-align: center;">Status</h4>
+							</div>
+						</div>
+						<hr>
+  						<div ng-repeat="jobapplication in jobctrl.jobApplications">
+							<div class="row">
+								<div class="col-lg-5">
+									<p style="font-size:20px"><a href="#" ng-click="jobctrl.getJobDetails(job.jobId)">{{jobapplication.jobs.jobName}}</a></p>
+									<p style="font-size:14px">{{jobapplication.jobs.jobCompany}}</p>
+								</div>
+								<div class="col-lg-2">
+									<p style="text-align: center;">{{jobapplication.jobs.jobExperience}} yrs</p>
+								</div>
+								<div class="col-lg-2">
+									<p style="text-align: center;">{{jobapplication.jobs.jobLocation}}</p>
+								</div>
+								<div class="col-lg-2">
+									<p style="text-align: center;">{{jobapplication.status}}</p>
+								</div>
+							</div>
+							<hr>
+						</div>
+					</div> 
+				</div>
+			</div>
+		</div>
+</div>

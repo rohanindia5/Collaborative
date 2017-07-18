@@ -3,6 +3,8 @@ package com.tweak.restcontroller;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.tweak.modal.ForumComment;
 import com.tweak.service.ForumCommentService;
+import com.tweak.service.ForumService;
+import com.tweak.service.UserService;
 
 
 @RestController
@@ -22,19 +26,32 @@ public class ForumCommentRestController
 {
 	@Autowired
 	ForumCommentService forumCommentService;
+	@Autowired
+	UserService userService;
+	@Autowired
+	ForumService forumService;
 	
-	@RequestMapping(value="/addForumComment",method=RequestMethod.PUT)
-	public ResponseEntity<String> addForumComment(@RequestBody ForumComment forumComment)
+	@RequestMapping(value="/addForumComment",method=RequestMethod.POST)
+	public ResponseEntity<String> addForumComment(@RequestBody ForumComment forumComment,HttpSession session)
 	{
+		String currentuser=(String)session.getAttribute("loggedInUser");
+		int currentuserid=userService.getUserByName(currentuser).getUserId();
+		int currentforumDetail=(int)session.getAttribute("forumIdDetails");
 		forumComment.setForumCommentDate(new Date());
+		forumComment.setUserId(currentuserid);
+		forumComment.setForumId(currentforumDetail);
 		forumCommentService.addForumComment(forumComment);
+		int currentcommentcount=forumService.updateForum(currentforumDetail).getForumComment();
+		currentcommentcount=currentcommentcount+1;
+		forumService.updateCommentCount(currentcommentcount, currentforumDetail);
 		return new ResponseEntity<String>("Successfully Added",HttpStatus.OK);
 	}
 	
 	@RequestMapping(value="/getForumComment",method=RequestMethod.GET)
-	public ResponseEntity<List<ForumComment>> getUser()
+	public ResponseEntity<List<ForumComment>> getUser(HttpSession session)
 	{
-		List<ForumComment> listforumscomment=forumCommentService.displayForumComment();
+		int currentforumDetail=(int)session.getAttribute("forumIdDetails");
+		List<ForumComment> listforumscomment=forumCommentService.displayForumComment(currentforumDetail);
 		return new ResponseEntity<List<ForumComment>>(listforumscomment,HttpStatus.OK);
 	}
 	

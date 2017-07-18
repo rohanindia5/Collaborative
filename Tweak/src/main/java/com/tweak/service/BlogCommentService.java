@@ -21,9 +21,9 @@ public class BlogCommentService
 	{
 		blogCommentDAOImp.addBlogComment(blogcomment);
 	}
-	public List<BlogComment> displayBlogComment()
+	public List<BlogComment> displayBlogComment(int blogId)
 	{
-		return blogCommentDAOImp.displayBlogComment();
+		return blogCommentDAOImp.displayBlogComment(blogId);
 	}
 	public BlogComment updateBlogComment(int blogCommentId)
 	{

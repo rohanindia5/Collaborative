@@ -19,6 +19,31 @@ app.service('BlogService', ['$http', '$q','$rootScope', function($http, $q,$root
                     );
 				},
 				
+		postABlogComment: function(blogComment){
+			return $http.post(url+'/addBlogComment',blogComment)
+		             .then(
+		            		 function(response){
+		            			 return response.data;
+		                     }, 
+		                     function(errResponse){
+		                    	 console.error('Error while posting blog comment');
+		                    	 return $q.reject(errResponse);
+		                     }
+		                    );
+						},
+						postABlogLike: function(blogLike){
+							return $http.post(url+'/addBlogLike',blogLike)
+						             .then(
+						            		 function(response){
+						            			 return response.data;
+						                     }, 
+						                     function(errResponse){
+						                    	 console.error('Error while posting blog like');
+						                    	 return $q.reject(errResponse);
+						                     }
+						                    );
+										},				
+				
 				getAllBlogs: function(){
 		            return $http.get(url+'/getBlog')
 		                    .then(
@@ -31,10 +56,34 @@ app.service('BlogService', ['$http', '$q','$rootScope', function($http, $q,$root
 		                            }
 		                    );
 					},
+					getAllBlogsUser: function(){
+			            return $http.get(url+'/getBlogOfUser')
+			                    .then(
+			                            function(response){
+			                                return response.data;
+			                            }, 
+			                            function(errResponse){
+			                                console.error('Error while getting user blog');
+			                                return $q.reject(errResponse);
+			                            }
+			                    );
+						},
+					
+				getAllBlogComments: function(){
+			            return $http.get(url+'/getBlogComment')
+			                    .then(
+			                            function(response){
+			                                return response.data;
+			                            }, 
+			                            function(errResponse){
+			                                console.error('Error while getting all blog comments');
+			                                return $q.reject(errResponse);
+			                            }
+			                    );
+						},	
 					
 					getBlogDetails: function(blogID) {
 		            	console.log("Getting blog details of " + blogID)
-		            	console.log(url+"/getABlog/"+ blogID)
 		                return $http.get(url+"/getBlogDetails/" + blogID)
 		                	
 		                        .then(
@@ -48,7 +97,7 @@ app.service('BlogService', ['$http', '$q','$rootScope', function($http, $q,$root
 		                                   
 		                                }
 		                        );
-		        },	
+						},	
 				
 					
 			}

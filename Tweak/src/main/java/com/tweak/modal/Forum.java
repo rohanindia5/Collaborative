@@ -20,10 +20,18 @@ public class Forum
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int forumId;
 	private String forumName;
+	@Column(columnDefinition="CLOB")
 	private String forumContent;
 	@Column(columnDefinition="Date")
 	private Date forumDate;
 	private int forumLikes;
+	private int forumComment;
+	public int getForumComment() {
+		return forumComment;
+	}
+	public void setForumComment(int forumComment) {
+		this.forumComment = forumComment;
+	}
 	private int userId;
 	@ManyToOne
 	@JoinColumn(name="userId",nullable=false,updatable=false,insertable=false)

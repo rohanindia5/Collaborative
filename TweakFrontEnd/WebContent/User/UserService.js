@@ -21,7 +21,30 @@ app.service('UserService',['$http','$q','$rootScope',function($http,$q,$rootScop
 						return response.data;},
 						null
 					);
-				}
+				},
+				
+	logout: function() {
+		console.log("logged out in service");
+					return $http.get(url+'/logout').then(
+						function(response){
+							return response.data;
+						},
+						null
+					);
+				},			
+				
+	getAllUser: function(){
+		            return $http.get(url+'/getUser')
+		                    .then(
+		                            function(response){
+		                                return response.data;
+		                            }, 
+		                            function(errResponse){
+		                                console.error('Error while getting all User');
+		                                return $q.reject(errResponse);
+		                            }
+		                    );
+					},				
 	
 		  }
 }]);

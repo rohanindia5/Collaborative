@@ -23,8 +23,8 @@ public class ForumCommentDAOImp implements ForumCommentDAO
 	}
 
 	@Override
-	public List<ForumComment> displayForumComment() {
-		List<ForumComment> list=sessionFactory.getCurrentSession().createQuery("from ForumComment").getResultList();
+	public List<ForumComment> displayForumComment(int forumId) {
+		List<ForumComment> list=sessionFactory.getCurrentSession().createQuery("from ForumComment where forumId="+forumId).getResultList();
 		return list;
 	}
 
@@ -40,6 +40,5 @@ public class ForumCommentDAOImp implements ForumCommentDAO
 		forumCommentDelete.setForumCommentId(forumCommentId);
 		sessionFactory.getCurrentSession().delete(forumCommentDelete);
 		
-	}
-
+	}	
 }

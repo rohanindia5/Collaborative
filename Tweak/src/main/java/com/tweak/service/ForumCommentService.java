@@ -20,9 +20,9 @@ public class ForumCommentService
 	{
 		forumCommentDAOImp.addForumComment(forumComment);
 	}
-	public List<ForumComment> displayForumComment()
+	public List<ForumComment> displayForumComment(int forumId)
 	{
-		return forumCommentDAOImp.displayForumComment();
+		return forumCommentDAOImp.displayForumComment(forumId);
 	}
 	public ForumComment updateForumComment(int forumCommentId)
 	{

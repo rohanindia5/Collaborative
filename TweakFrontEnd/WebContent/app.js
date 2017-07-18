@@ -27,16 +27,40 @@ app.config(function($routeProvider) {
 		templateUrl : "Jobs/addJob.html",
 		controller : "JobController"
 	})
-	.when("/Forum", {
-		templateUrl : "Forum/Forum.html",
+	.when("/viewAJob", {
+		templateUrl : "Jobs/viewAJob.html",
+		controller : "JobController"
+	})
+	.when("/viewForum", {
+		templateUrl : "Forum/viewForum.html",
 		controller : "ForumController"
 	})
-	.when("/Products", {
-		templateUrl : "Products/Products.html",
-		controller : "ProductController"
+	.when("/addForum", {
+		templateUrl : "Forum/addForum.html",
+		controller : "ForumController"
+	})
+	.when("/viewAForum", {
+		templateUrl : "Forum/viewAForum.html",
+		controller : "ForumController"
 	})
 	.when("/Account", {
 		templateUrl : "User/User.html",
+		controller : "UserController"
+	})
+	.when("/Profile", {
+		templateUrl : "User/profileBlog.html",
+		controller : "UserController"
+	})
+	.when("/profileForum", {
+		templateUrl : "User/profileForum.html",
+		controller : "UserController"
+	})
+	.when("/profileFriends", {
+		templateUrl : "User/profileFriends.html",
+		controller : "UserController"
+	})
+	.when("/profileJob", {
+		templateUrl : "User/profileJob.html",
 		controller : "UserController"
 	})
 	.otherwise({
@@ -80,6 +104,9 @@ app.run(function ($rootScope, $location, $cookies, $http){
 	//To keep user logged in after page refresh
 	$rootScope.loggedInUser = $cookies.get("loggedInUser");
 	$rootScope.loggedInUserRole = $cookies.get("loggedInUserRole");
+	$rootScope.loggedInUserId=$cookies.get("loggedInUserId");
+	$rootScope.loggedInUserFirstName=$cookies.get("loggedInUserFirstName");
+	$rootScope.loggedInUserLastName=$cookies.get("loggedInUserLastName");
 	$rootScope.userLoggedIn = $cookies.get('userLoggedIn');
 	if($rootScope.loggedInUser)
 	{

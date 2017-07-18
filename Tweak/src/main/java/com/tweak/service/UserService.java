@@ -21,9 +21,9 @@ public class UserService
 	{
 		userDAOImp.addUser(userTable);
 	}
-	public List<UserTable> displayUser()
+	public List<UserTable> displayUser(int userId)
 	{
-		return userDAOImp.displayUser();
+		return userDAOImp.displayUser(userId);
 	}
 	public UserTable updateUser(int userId)
 	{

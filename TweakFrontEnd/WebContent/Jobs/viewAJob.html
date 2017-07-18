@@ -1,0 +1,33 @@
+<div id="headerwrapjob">
+	<div class="container">
+    	<div class="row">
+        	<div class="col-lg-6 col-lg-offset-3">
+          		<h1 style="color:white">Job</h1>
+          		<h4 style="color:white;font-size: 20px">Pleasure in job puts perfection in the work.</h4>          		
+        	</div>
+		</div>
+	</div>
+</div>
+
+<div class="container" ng-controller="JobController as jobctrl" style="margin-top: 20px;">
+	<div class="row">
+		<div class="col-lg-2">
+		</div>
+		<div class="col-lg-8 jobviewbox">
+			<h4>{{selectedJob.jobName}}</h4>
+			<h5>{{selectedJob.jobCompany}}</h5>
+			<i class="fa fa-briefcase"> {{selectedJob.jobExperience}} yrs &nbsp; <i class="fa fa-map-pin"> {{selectedJob.jobLocation}}</i></i><br>
+			<form ng-submit="jobctrl.submitJob()" name="myForm" class="form-horizontal">
+				<button type="submit" class="btn btn-primary" style="border-radius: 1px;margin-top: 20px; ">APPLY</button><br>
+			</form>
+			<hr>
+			<h5 style="margin-top: 20px;">JOB DESCRIPTION</h5>
+			<p>{{selectedJob.jobDescription}}</p>
+			<hr>
+			<h5 style="margin-top: 20px;">JOB SKILLS</h5>
+			<p>{{selectedJob.jobSkills}}</p>
+		</div>
+		<div class="col-lg-2">
+		</div>
+	</div>
+</div>

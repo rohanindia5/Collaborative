@@ -32,4 +32,16 @@ public class ForumService
 	{
 		forumDAOImp.deleteForum(forumId);
 	}
+	public void updateCommentCount(int count,int forumId)
+	{
+		forumDAOImp.updateCommentCount(count, forumId);
+	}
+	public void updateLikeCount(int count,int forumId)
+	{
+		forumDAOImp.updateLikeCount(count, forumId);
+	}
+	public List<Forum> getForumOfUser(int userId)
+	{
+		return forumDAOImp.getForumOfUser(userId);
+	}
 }

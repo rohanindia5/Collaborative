@@ -28,7 +28,7 @@ public class JobsDAOImp implements JobsDAO
 
 	@Override
 	public Jobs updateJobs(int jobsId) {
-		List<Jobs> list=sessionFactory.getCurrentSession().createQuery("from Jobs where jobsId="+jobsId).getResultList();
+		List<Jobs> list=sessionFactory.getCurrentSession().createQuery("from Jobs where jobId="+jobsId).getResultList();
 		return list.get(0);
 	}
 

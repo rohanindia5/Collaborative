@@ -1,5 +1,9 @@
 package com.tweak.restcontroller;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -11,9 +15,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.util.UriComponentsBuilder;
 
-
+import com.tweak.modal.Blog;
 import com.tweak.modal.UserTable;
 
 import com.tweak.service.UserService;
@@ -32,9 +39,11 @@ public class UserRestController
 	}
 	
 	@RequestMapping(value="/getUser",method=RequestMethod.GET)
-	public ResponseEntity<List<UserTable>> getUser()
+	public ResponseEntity<List<UserTable>> getUser(HttpSession session)
 	{
-		List<UserTable> listblogs=userService.displayUser();
+		String currentuser=(String)session.getAttribute("loggedInUser");
+		int currentuserid=userService.getUserByName(currentuser).getUserId();
+		List<UserTable> listblogs=userService.displayUser(currentuserid);
 		return new ResponseEntity<List<UserTable>>(listblogs,HttpStatus.OK);
 	}
 	
@@ -65,6 +74,46 @@ public class UserRestController
 			//friendDAO.setOnline(usercredobj.getUsername());
 			
 		return new ResponseEntity<UserTable>(usercredobj, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/logout", method=RequestMethod.GET)
+	public ResponseEntity<String> logoutUser(HttpSession httpSession)
+	{
+		String username = (String) httpSession.getAttribute("loggedInUser");
+		httpSession.invalidate();
+		return new ResponseEntity<String>("Succesfullyloggedout", HttpStatus.OK);
+	}
+	
+	
+	@RequestMapping(value= "/userUpload", method = RequestMethod.POST)
+	public ResponseEntity<String> addUserPicture(@RequestParam(value="file")MultipartFile file,UriComponentsBuilder builder,UserTable user,HttpSession session)
+	{
+	      File newFile;
+     		String path = "D:\\Projects\\TweakFrontEnd\\WebContent\\resources\\image\\";
+     		String currentusername=(String) session.getAttribute("loggedInUser");
+     		int currentuserid=userService.getUserByName(currentusername).getUserId();
+     		path = path+"user"+currentuserid+".jpg";
+     		newFile = new File(path);
+     		System.out.println(path);
+     		
+     		if(!file.isEmpty())
+     		{
+     			try {
+     				byte[] bytes = file.getBytes();
+     				FileOutputStream fos = new FileOutputStream(newFile);
+     				BufferedOutputStream bos = new BufferedOutputStream(fos);
+     				bos.write(bytes);
+     				bos.close();
+     			} catch (IOException e) {
+     				// TODO Auto-generated catch block
+     				System.out.println("exception occured"+e);
+     			}			
+     		}
+     		else{
+     				System.out.println("No file selected");
+     		}
+     		
+             return new ResponseEntity<String>("sucessfully uploaded image", HttpStatus.CREATED);	
 	}
 
 }

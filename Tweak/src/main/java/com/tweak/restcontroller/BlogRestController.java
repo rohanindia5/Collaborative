@@ -25,7 +25,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.tweak.modal.Blog;
-
+import com.tweak.modal.BlogLike;
+import com.tweak.service.BlogLikeService;
 import com.tweak.service.BlogService;
 import com.tweak.service.UserService;
 
@@ -36,6 +37,8 @@ public class BlogRestController
 	BlogService blogService;
 	@Autowired
 	UserService userService;
+	@Autowired
+	BlogLikeService blogLikeService;
 	
 	@RequestMapping(value="/addBlog",method=RequestMethod.POST)
 	public ResponseEntity<String> addBlog(@RequestBody Blog blog,HttpSession session)
@@ -48,7 +51,6 @@ public class BlogRestController
 		blog.setUserId(currentuserid);
 		blogService.addBlog(blog);
 		session.setAttribute("blogId", blog.getBlogId());
-		System.out.println(session.getAttribute("blogId"));
 		return new ResponseEntity<String>("Successfully Added",HttpStatus.OK);
 	}
 	
@@ -77,9 +79,10 @@ public class BlogRestController
 	}
 	
 	@RequestMapping(value="/getBlogDetails/{blogId}",method=RequestMethod.GET)
-	public ResponseEntity<Blog> getABlog(@PathVariable("blogId") int blogId)
+	public ResponseEntity<Blog> getABlog(@PathVariable("blogId") int blogId,HttpSession session)
 	{
-		System.out.println("getting blog details");
+		
+		session.setAttribute("blogIdDetails", blogId);
 		Blog blog=blogService.updateBlog(blogId);
 		return new ResponseEntity<Blog>(blog,HttpStatus.OK);
 	}
@@ -113,5 +116,37 @@ public class BlogRestController
              return new ResponseEntity<String>("sucessfully uploaded image", HttpStatus.CREATED);	
 		
 		
+	}
+	
+	@RequestMapping(value="/addBlogLike",method=RequestMethod.POST)
+	public ResponseEntity<String> addBlogLike(@RequestBody BlogLike blogLike,HttpSession session)
+	{
+		String currentuser=(String)session.getAttribute("loggedInUser");
+		int currentuserid=userService.getUserByName(currentuser).getUserId();
+		int currentblogDetail=(int)session.getAttribute("blogIdDetails");
+		try{
+			BlogLike like=blogLikeService.getLike(currentuserid, currentblogDetail);
+			return new ResponseEntity<String>("failed Liked",HttpStatus.OK);
+		}
+		catch (Exception e) {
+			blogLike.setUserId(currentuserid);
+			blogLike.setBlogId(currentblogDetail);
+			blogLikeService.addLike(blogLike);
+			int currentlikecount=blogService.updateBlog(currentblogDetail).getBlogLikes();
+			currentlikecount=currentlikecount+1;
+			blogService.updateLikeCount(currentblogDetail, currentlikecount);
+			return new ResponseEntity<String>("Success Liked",HttpStatus.OK);
+			
+		}
+		
+	}
+	
+	@RequestMapping(value="/getBlogOfUser",method=RequestMethod.GET)
+	public ResponseEntity<List<Blog>> getBlogOfUser(HttpSession session)
+	{
+		String currentuser=(String)session.getAttribute("loggedInUser");
+		int currentuserid=userService.getUserByName(currentuser).getUserId();
+		List<Blog> listblogs=blogService.getBlogOfUser(currentuserid);
+		return new ResponseEntity<List<Blog>>(listblogs,HttpStatus.OK);
 	}
 }

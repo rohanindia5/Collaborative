@@ -1,0 +1,28 @@
+<div id="headerwrapforum">
+	<div class="container">
+    	<div class="row">
+        	<div class="col-lg-6 col-lg-offset-3">
+          		<h1 style="color:white">Forum</h1>
+          		<h4 style="color:white">Discussion Is An Exchange Of Knowledge</h4>
+      
+        	</div>
+		</div>
+	</div>
+</div>
+
+<div class="container" ng-controller="ForumController as  forumctrl" style="margin-top: 20px">
+	<div class="row">
+		<div class="col-lg-12 blogbox">
+    		<form ng-submit="forumctrl.submit()" name="myForm" class="form-horizontal">
+      			<p class="accountline accountlog" style="">POST A FORUM
+        			<span class="glyphicon glyphicon-log-in pull-right"></span>
+      			</p>
+      			<p class="accountcolor">FORUM TITLE*</p>
+      			<input type="text" class="form-control" ng-model="forumctrl.forum.forumName" style="border-radius: 1px;margin-top: -10px">
+      			<p class="accountcolor" style="margin-top: 20px;">FORUM CONTENT*</p>
+      			<textarea class="form-control" ng-model="forumctrl.forum.forumContent" style="border-radius: 1px;margin-top: -10px" rows="10"></textarea>
+				<input type="submit" value="POST" class="btn btn-default" style="border-radius: 1px;margin-top: 10px">
+      		</form>
+    	</div>
+	</div>
+</div>

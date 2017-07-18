@@ -13,11 +13,42 @@ app.controller('BlogController1',['BlogService','$location', '$rootScope','$scop
 		};
 	
 	this.blogs = [];
+	
+	this.blogComment=
+		{
+			blogCommentId:'',
+			blogCommentContext:'',
+			blogCommentDate:'',
+			userId:'',
+			blogId:'',
+		};
+	this.blogComments=[];
+	
+	this.blogLike=
+	{
+			blogLikeId:'',
+			userId:'',
+			blogId:'',
+	};
+	this.blogLikes=[];
 
 	self.submit=function() {
 		{
 			console.log('submit a new blog', self.blog);
 			self.postABlog(self.blog);
+		}
+	};
+	
+	self.submitComment=function() {
+		{
+			console.log('submit a new blogcomment', self.blogComment);
+			self.postABlogComment(self.blogComment);
+		}
+	};
+	self.submitLike=function() {
+		{
+			console.log('submit a new blogLike', self.blogLike);
+			self.postABlogLike(self.blogLike);
 		}
 	};
 
@@ -32,6 +63,24 @@ app.controller('BlogController1',['BlogService','$location', '$rootScope','$scop
 		});
 	};
 	
+	self.postABlogComment = function(blogComment) {
+		console.log('submit a new blogComment', self.blogComment);
+		BlogService.postABlogComment(blogComment).then(function(d) {
+		alert("You successfully posted the blog comment")
+		}, function(errResponse) {
+			console.error('Error while posting blog comment');
+		});
+	};
+	
+	self.postABlogLike = function(blogLike) {
+		console.log('submit a new blog', self.blogLike);
+		BlogService.postABlogLike(blogLike).then(function(d) {
+		alert("You successfully posted the blogLike")
+		}, function(errResponse) {
+			console.error('Error while posting blogLike.');
+		});
+	};
+	
 	self.getAllBlogs = function() {
 		console.log('calling the method getAllBlogs');
 		BlogService.getAllBlogs().then(function(d) {
@@ -41,8 +90,29 @@ app.controller('BlogController1',['BlogService','$location', '$rootScope','$scop
 		console.error('Error while fetching All opend jobs');
 		});
 	};
-
 	self.getAllBlogs(); // calling getAllJobs function
+	
+	self.getAllBlogsUser = function() {
+		console.log('calling the method getAllBlogsUser');
+		BlogService.getAllBlogsUser().then(function(d) {
+		self.blogs = d;
+		},
+		function(errResponse) {
+		console.error('Error while fetching All user blog');
+		});
+	};
+	self.getAllBlogsUser();
+	
+	self.getAllBlogComments = function() {
+		console.log('calling the method getAllBlogComments');
+		BlogService.getAllBlogComments().then(function(d) {
+		self.blogComments = d;
+		},
+		function(errResponse) {
+		console.error('Error while fetching blog comments');
+		});
+	};
+	self.getAllBlogComments();
 	
 	self.getBlogDetails = getBlogDetails
 	function getBlogDetails(blogID) {

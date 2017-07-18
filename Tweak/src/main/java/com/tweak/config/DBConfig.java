@@ -13,9 +13,12 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import com.tweak.DAO.UserDAOImp;
 import com.tweak.modal.Blog;
 import com.tweak.modal.BlogComment;
+import com.tweak.modal.BlogLike;
 import com.tweak.modal.Forum;
 import com.tweak.modal.ForumComment;
+import com.tweak.modal.ForumLike;
 import com.tweak.modal.Friends;
+import com.tweak.modal.JobApplication;
 import com.tweak.modal.Jobs;
 import com.tweak.modal.UserTable;
 
@@ -45,10 +48,13 @@ public class DBConfig
 		sessionBuilder.addAnnotatedClass(UserTable.class);
 		sessionBuilder.addAnnotatedClass(Blog.class);
 		sessionBuilder.addAnnotatedClass(BlogComment.class);
+		sessionBuilder.addAnnotatedClass(BlogLike.class);
 		sessionBuilder.addAnnotatedClass(Forum.class);
 		sessionBuilder.addAnnotatedClass(ForumComment.class);
+		sessionBuilder.addAnnotatedClass(ForumLike.class);
 		sessionBuilder.addAnnotatedClass(Friends.class);
 		sessionBuilder.addAnnotatedClass(Jobs.class);
+		sessionBuilder.addAnnotatedClass(JobApplication.class);
 		SessionFactory sessionFactory=sessionBuilder.buildSessionFactory();
 		
 		System.out.println("Session Factory Object Created");

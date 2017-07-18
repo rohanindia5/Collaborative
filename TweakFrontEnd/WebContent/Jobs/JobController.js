@@ -14,6 +14,15 @@ app	.controller('JobController',['JobService','$location', '$rootScope',function
 	
 	this.jobs = [];
 	
+	this.jobApplication=
+	{
+			jobApplicationId:'',
+			jobId:'',
+			userId:'',
+			status:'',
+	};
+	this.jobApplications=[];
+	
 	self.submit = function() {
 		{
 			console.log('submit a new job', self.job);
@@ -41,5 +50,44 @@ app	.controller('JobController',['JobService','$location', '$rootScope',function
 	};
 
 	self.getAllJobs(); // calling getAllJobs function
+	
+	
+	self.getAllJobsApplied = function() {
+		console.log('calling the method getAllJobsApplied');
+		JobService.getAllJobsApplied().then(function(d) {
+			self.jobApplications = d;},
+			function(errResponse) {
+			console.error('Error while fetching All applied jobs');
+		});
+	};
 
+	self.getAllJobsApplied(); // calling getAllJobs function
+	
+	self.getJobDetails = getJobDetails
+	function getJobDetails(jobID) {
+		console.log('get Job details of the id', jobID);
+		JobService.getJobDetails(jobID).then(function(d) {
+			self.job = d;		
+			$location.path('/viewAJob');
+			},
+			function(errResponse) {
+				console.error('Error while fetching blog details');
+				});
+		};
+
+		self.submitJob = function() {
+			{
+				console.log('submit a new job', self.jobApplication);
+				self.postAJobApp(self.jobApplication);
+			}
+				
+		};
+		self.postAJobApp = function(jobApplication) {
+			console.log('submit a new job', self.jobApplication);
+			JobService.postAJobApp(jobApplication).then(function(d) {
+			alert("You successfully posted the job application")
+			}, function(errResponse) {
+				console.error('Error while posting job application.');
+			});
+		};
 }])

@@ -6,7 +6,7 @@ import com.tweak.modal.ForumComment;
 public interface ForumCommentDAO 
 {
 	public void addForumComment(ForumComment forumComment);
-	public List<ForumComment> displayForumComment();
+	public List<ForumComment> displayForumComment(int forumId);
 	public ForumComment updateForumComment(int forumCommentId);
 	public void deleteForumComment(int forumCommentId);
 }

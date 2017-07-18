@@ -28,6 +28,7 @@
 <script src="Jobs/JobService.js"></script>
 <script src="User/UserService.js"></script>
 <script src="Blog/BlogService.js"></script>
+<script src="Forum/ForumService.js"></script>
 
 </head>
 <body ng-app="myApp" >	
@@ -43,13 +44,14 @@
           </button>
           <a class="navbar-brand" href="#/">TWEAK</a>
         </div>
-        <div class="navbar-collapse collapse">
+        <div class="navbar-collapse collapse" ng-controller="UserController as userctrl">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#/">Home</a></li>
             <li><a href="#!/viewBlog">Blog</a></li>
-            <li><a href="#!/Forum">Forum</a></li>
+            <li><a href="#!/viewForum">Forum</a></li>
             <li><a href="#!/viewJob">Job</a></li>
             <li><a href="#!/Account">Account</a></li>
+            <li><a href="#!/Profile">Profile</a></li>			
           </ul>
         </div><!--/.nav-collapse -->
       </div>

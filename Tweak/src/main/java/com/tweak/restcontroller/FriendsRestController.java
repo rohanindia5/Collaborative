@@ -2,6 +2,8 @@ package com.tweak.restcontroller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,17 +16,26 @@ import org.springframework.web.bind.annotation.RestController;
 import com.tweak.modal.Friends;
 
 import com.tweak.service.FriendsService;
+import com.tweak.service.UserService;
 
 @RestController
 public class FriendsRestController 
 {
 	@Autowired
 	FriendsService friendsService;
+	@Autowired
+	UserService userService;
 	
 
-	@RequestMapping(value="/addFriend",method=RequestMethod.PUT)
-	public ResponseEntity<String> addUser(@RequestBody Friends friends)
+
+	@RequestMapping(value="/addFriend/{friendsUserId}",method=RequestMethod.GET)
+	public ResponseEntity<String> addUser(@RequestBody Friends friends,HttpSession session,@PathVariable("friendsUserId")int friendsUserId)
 	{
+		String currentuser=(String)session.getAttribute("loggedInUser");
+		int currentuserid=userService.getUserByName(currentuser).getUserId();
+		friends.setFriendsUserId(friendsUserId);
+		friends.setUserId(currentuserid);
+		friends.setStatus("Requested");
 		friendsService.addFriends(friends);
 		return new ResponseEntity<String>("Successfully Added",HttpStatus.OK);
 	}

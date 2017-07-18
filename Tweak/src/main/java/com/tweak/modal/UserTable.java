@@ -4,6 +4,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
+
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 public class UserTable
@@ -16,6 +19,9 @@ public class UserTable
 	private String userFirstName;
 	private String userLastName;
 	private int userRole;
+	@Transient
+	private MultipartFile userImage;
+	
 	public int getUserId() {
 		return userId;
 	}

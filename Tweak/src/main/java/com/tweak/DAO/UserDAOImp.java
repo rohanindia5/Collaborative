@@ -28,9 +28,9 @@ public class UserDAOImp implements UserDAO
 	}
 
 	@Override
-	public List<UserTable> displayUser()
+	public List<UserTable> displayUser(int userId)
 	{
-		List<UserTable> list=sessionFactory.getCurrentSession().createQuery("from UserTable").getResultList();
+		List<UserTable> list=sessionFactory.getCurrentSession().createQuery("from UserTable where userId !="+userId).getResultList();
 		return list;
 	}
 

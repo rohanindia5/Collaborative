@@ -1,0 +1,40 @@
+<div class="container-fluid" ng-controller="UserController as userctrl">
+  <div class="row">
+    <div class="fb-profile">
+        <div id="headerwrapprofile"></div>
+        <img align="left" class="fb-image-profile thumbnail" src="resources/image/user{{loggedInUserId}}.jpg" alt="Profile image example"/>
+        <div class="fb-profile-text">
+            <h1>{{loggedInUserFirstName}} {{loggedInUserLastName}}</h1>
+            
+            <form name="userForm" ng-submit="userctrl.submitUser()" enctype="multipart/form-data" method="POST">
+				<input type="file" file-model="userImage"/>
+				<input type="submit" value="UPDATE" class="btn btn-default" style="border-radius: 1px;margin-top: 10px">
+			</form>
+			
+        </div>
+    </div>
+  </div>
+</div>
+   
+<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="billcard">
+					<a  href="#!/Profile" style="margin-right: 50px">YOUR BLOG</a>
+					<a  href="#!/profileForum" style="margin-right: 50px">YOUR FORUM</a>
+					<a  href="#!/profileJob" style="margin-right: 50px">JOB</a>
+					<a  href="#!/profileFriends" style="margin-right: 50px">YOUR FRIENDS</a>
+					<hr>
+					<div class="container" ng-controller="BlogController1 as blogctrl">
+  						<div class="row" style="margin-top: 20px;">
+    						<div class="col-lg-11" ng-repeat="blog in blogctrl.blogs">
+      							<a href="#" ng-click="blogctrl.getBlogDetails(blog.blogId)"><img src="resources/image/blog{{blog.blogId}}.jpg" class="img-responsive blogimage" alt="Cinque Terre"></a>
+      							<h5>{{blog.blogName}}</h5>
+      							<h6>By {{blog.user.userFirstName}} {{blog.user.userLastName}} | {{blog.blogDate|date:'MM/dd/yyyy'}}</h6>
+    						</div>
+  						</div>
+					</div> 
+				</div>
+			</div>
+		</div>
+</div>				

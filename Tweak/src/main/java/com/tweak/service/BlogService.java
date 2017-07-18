@@ -32,4 +32,16 @@ public class BlogService
 	{
 		blogDAOImp.deleteBlog(blogId);
 	}
+	public void updateCommentCount(int blogId,int count)
+	{
+		blogDAOImp.updateCommentCount(blogId, count);
+	}
+	public void updateLikeCount(int blogId,int count)
+	{
+		blogDAOImp.updateLikeCount(blogId, count);
+	}
+	public List<Blog> getBlogOfUser(int userId)
+	{
+		return blogDAOImp.getBlogOfUser(userId);
+	}
 }

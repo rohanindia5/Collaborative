@@ -38,5 +38,20 @@ public class ForumDAOImp implements ForumDAO
 		forumDelete.setForumId(forumId);
 		sessionFactory.getCurrentSession().delete(forumDelete);
 	}
-
+	
+	public void updateCommentCount(int count,int forumId)
+	{
+		sessionFactory.getCurrentSession().createQuery("update Forum set forumComment="+count+"where forumId="+forumId).executeUpdate();
+	}
+	
+	public void updateLikeCount(int count,int forumId)
+	{
+		sessionFactory.getCurrentSession().createQuery("update Forum set forumLikes="+count+"where forumId="+forumId).executeUpdate();
+	}
+	
+	public List<Forum> getForumOfUser(int userId)
+	{
+		List<Forum> list=sessionFactory.getCurrentSession().createQuery("from Forum where userId="+userId).getResultList();
+		return list;
+	}
 }

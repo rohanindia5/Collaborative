@@ -40,5 +40,21 @@ public class BlogDAOImp implements BlogDAO
 		sessionFactory.getCurrentSession().delete(blogDelete);
 		
 	}
+	
+	public void updateCommentCount(int blogId,int count)
+	{
+		sessionFactory.getCurrentSession().createQuery("UPDATE Blog set blogComment="+count+"where blogID="+blogId).executeUpdate();
+	}
+	
+	public void updateLikeCount(int blogId,int count)
+	{
+		sessionFactory.getCurrentSession().createQuery("UPDATE Blog set blogLikes="+count+"where blogID="+blogId).executeUpdate();
+	}
+	
+	public List<Blog> getBlogOfUser(int userId)
+	{
+		List<Blog> list=sessionFactory.getCurrentSession().createQuery("from Blog where userId="+userId).getResultList();
+		return list;
+	}
 
 }

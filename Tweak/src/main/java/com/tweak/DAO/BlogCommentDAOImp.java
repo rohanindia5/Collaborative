@@ -21,8 +21,8 @@ public class BlogCommentDAOImp implements BlogCommentDAO
 	}
 
 	@Override
-	public List<BlogComment> displayBlogComment() {
-		List<BlogComment> list=sessionfactory.getCurrentSession().createQuery("from BlogComment").getResultList();
+	public List<BlogComment> displayBlogComment(int blogId) {
+		List<BlogComment> list=sessionfactory.getCurrentSession().createQuery("from BlogComment where blogId="+blogId).getResultList();
 		return list;
 	}
 
